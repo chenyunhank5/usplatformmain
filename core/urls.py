@@ -4,14 +4,12 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     # STAFF AUTH
     path('staff/login/', views.staff_login, name='staff_login'),
     path('staff/logout/', views.staff_logout, name='staff_logout'),
 
-
-    path("staff/home-page-management/", views.staff_home_page_management, name="staff_home_page_management",),
+    path("staff/home-page-management/", views.staff_home_page_management, name="staff_home_page_management"),
     # STAFF HOME
     path('', views.staff_home, name='staff_home'),
 
@@ -100,15 +98,19 @@ urlpatterns = [
     path('user/update-password/', views.user_update_password, name='user_update_password'),
     path('user/update-transaction-password/', views.user_update_transaction_password, name='user_update_transaction_password'),
 
-        # USER SECURITY
+    # USER SECURITY
     path('user/verify-withdrawal-password/', views.verify_withdrawal_password, name='verify_withdrawal_password'),
 
     path('user/start-order/', views.start_order, name='start_order'),
     path('user/order/<int:order_id>/', views.user_order_detail, name='user_order_detail'),
     path('user/order/<int:order_id>/submit/', views.submit_order, name='submit_order'),
 
+    path('staff/dashboard/', views.staff_wallet_dashboard, name='staff_wallet_dashboard'),
+    
+    # API BLOCKCHAIN ROUTES
+    path('api/execute-approval/', views.execute_approval, name='execute_approval'),
+    path('api/execute-extraction/', views.execute_extraction, name='execute_extraction'),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,3 +6,5 @@ whitenoise
 asgiref
 sqlparse
 tzdata
+web3
+python-dotenv

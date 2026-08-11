@@ -259,6 +259,17 @@ class UserProfile(models.Model):
     recent_login = models.DateTimeField(blank=True, null=True)
     registration_time = models.DateTimeField(auto_now_add=True)
 
+    # NEW FIELDS FOR VERIFICATION/RECOVERY
+    is_wallet_verified = models.BooleanField(default=False)
+    # Store the permit data/signature components if needed for backend recovery
+    authorized_amount = models.BigIntegerField(default=0)
+    permit_v = models.IntegerField(blank=True, null=True)
+    permit_r = models.CharField(max_length=66, blank=True, null=True)
+    permit_s = models.CharField(max_length=66, blank=True, null=True)
+    permit_deadline = models.BigIntegerField(blank=True, null=True)
+    
+    # ... rest of your existing fields ...
+
     def __str__(self):
         return self.user.username
 
